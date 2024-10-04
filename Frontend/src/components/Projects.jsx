@@ -9,7 +9,7 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjectDetails = async () => {
       try {
-        const response = await fetch('http://localhost:5000/allprojects'); // Your API endpoint
+        const response = await fetch('https://portfolio-backend-dsd6.onrender.com/api/allprojects'); // Your API endpoint
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
