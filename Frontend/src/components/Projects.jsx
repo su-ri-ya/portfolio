@@ -86,7 +86,7 @@ const Projects = () => {
                       href={project.liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-500 underline mt-2 block z-10 relative" // Added z-index
+                      className="text-gray-500 underline mt-2 block z-10 relative" // Added z-index
                     >
                       Live Demo
                     </a>
