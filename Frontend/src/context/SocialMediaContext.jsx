@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from 'react';
 
 const SocialMediaContext = createContext();
 
-const API_URL = 'http://localhost:5000/socialmedia';
+const API_URL = 'https://portfolio-backend-dsd6.onrender.com/api/socialmedia';
 
 export const SocialMediaProvider = ({ children }) => {
   const [socialMediaLinks, setSocialMediaLinks] = useState([]);
