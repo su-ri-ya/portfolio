@@ -105,7 +105,7 @@ const Projects = () => {
                 </motion.div>
               ))
             ) : (
-              <p className="text-gray-400">Loading...... wait for few min</p> // Message if no projects are found
+              <p className="text-gray-400">Loading......</p> // Message if no projects are found
             )}
       </motion.div>
     </motion.section>
