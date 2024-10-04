@@ -30,12 +30,12 @@ app.get('/', (req, res) => {
 });
 
 // Using prefixed routes
-app.use("/api/education", EducationRoutes);
-app.use("/api/projects", projectRoutes);
-app.use("/api/social-media-links", SocialMediaLinksRoutes);
-app.use("/api/personal-details", personalDetailsRoutes);
-app.use("/api/resume", ResumeRoutes);
-app.use("/api/certificates", certificateRoutes);
+app.use("/api/", EducationRoutes);
+app.use("/api/", projectRoutes);
+app.use("/api/", SocialMediaLinksRoutes);
+app.use("/api/", personalDetailsRoutes);
+app.use("/api/", ResumeRoutes);
+app.use("/api/", certificateRoutes);
 
 // Set the port from environment variables or default to 5000
 const PORT = process.env.PORT || 5000;
