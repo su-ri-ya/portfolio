@@ -73,7 +73,7 @@ const Projects = () => {
                   className="bg-transparent border border-white rounded-xl p-5 w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-1rem)] group relative overflow-hidden"
                 >
                   <img
-                    src={`http://localhost:5000${project.imageUrls[0]}`}
+                    src={`https://portfolio-backend-dsd6.onrender.com${project.imageUrls[0]}`}
                     alt={project.projectName}
                     className="w-full rounded-lg object-cover mb-4 transition duration-300 ease-in-out group-hover:blur-sm"
                   />
