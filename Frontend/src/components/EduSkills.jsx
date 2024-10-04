@@ -11,7 +11,7 @@ const EduSkills = () => {
   useEffect(() => {
     const fetchEducationData = async () => {
       try {
-        const res = await fetch('https://portfolio-backend-dsd6.onrender.com/api/education/alleducation');
+        const res = await fetch('https://portfolio-backend-dsd6.onrender.com/api/alleducation');
         const data = await res.json();
         console.log('Fetched education data:', data); // Log fetched education data
         setEduDetails(data); // Update state with fetched education data
@@ -27,7 +27,7 @@ const EduSkills = () => {
   useEffect(() => {
     const fetchCertificateData = async () => {
       try {
-        const res = await fetch('http://localhost:5000/certificates'); // Replace with your actual certificates API endpoint
+        const res = await fetch('https://portfolio-backend-dsd6.onrender.com/api/certificates'); // Replace with your actual certificates API endpoint
         const data = await res.json();
         console.log('Fetched certificate data:', data); // Log fetched certificate data
         setCertificates(data); // Update state with fetched certificate data
