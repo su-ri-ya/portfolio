@@ -11,7 +11,7 @@ const EduSkills = () => {
   useEffect(() => {
     const fetchEducationData = async () => {
       try {
-        const res = await fetch('http://localhost:5000/alleducation');
+        const res = await fetch('https://portfolio-backend-dsd6.onrender.com/api/education/alleducation');
         const data = await res.json();
         console.log('Fetched education data:', data); // Log fetched education data
         setEduDetails(data); // Update state with fetched education data
