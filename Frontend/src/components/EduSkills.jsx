@@ -41,10 +41,10 @@ const EduSkills = () => {
 
   // Skills Data (You can add more or fetch dynamically if needed)
   const skills = [
-    { icon: <FaCode className="text-2xl" />, name: 'Web Development' },
-    { icon: <FaCode className="text-2xl" />, name: 'UI/UX Design' },
-    { icon: <FaCode className="text-2xl" />, name: 'Video Editing' },
-    { icon: <FaCode className="text-2xl" />, name: 'Web Design' },
+    { icon: <FaCode className="text-1xl" />, name: 'Web Development' },
+    { icon: <FaCode className="text-1xl" />, name: 'UI/UX Design' },
+    { icon: <FaCode className="text-1xl" />, name: 'Video Editing' },
+    { icon: <FaCode className="text-1xl" />, name: 'Web Design' },
   ];
 
   return (
