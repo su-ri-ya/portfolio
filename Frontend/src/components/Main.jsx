@@ -37,7 +37,7 @@ const Main = () => {
           <img
             src={profile}
             alt="Suriya"
-            className="w-[130px] h-[160px] sm:w-[160px] sm:h-[200px] md:w-[200px] md:h-[260px] lg:w-[250px] lg:h-[320px] xl:w-[300px] xl:h-[380px] object-cover rounded-[50%]"
+            className="w-[150px] h-[160px] sm:w-[160px] sm:h-[200px] md:w-[220px] md:h-[260px] lg:w-[250px] lg:h-[250px] xl:w-[350px] xl:h-[350px] object-cover rounded-[50%]"
           />
           <h1 className="text-[30px] md:text-[35px] lg:text-[35px] mb-0">Suriya</h1>
           <h2 className="text-gray-600 mt-0 text-base md:text-lg">I am a Developer</h2>
