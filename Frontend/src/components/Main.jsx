@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import profile from '../assets/profile.png';
+import profile from '../assets/profile.jpg';
 import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp, FaNodeJs } from 'react-icons/fa';
 import { SiJavascript, SiReact, SiTailwindcss, SiHtml5, SiCss3, SiPython } from 'react-icons/si';
 import Projects from './Projects';
