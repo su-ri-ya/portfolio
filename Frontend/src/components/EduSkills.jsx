@@ -65,7 +65,7 @@ const EduSkills = () => {
             {skills.map((skill, index) => (
               <div key={index} className="flex items-center space-x-3">
                 <div className="icon text-gray-800">{skill.icon}</div>
-                <span className="text-base sm:text-lg font-semibold text-gray-200">{skill.name}</span>
+                <span className="text-sm sm:text-lg font-semibold text-gray-200">{skill.name}</span>
               </div>
             ))}
           </div>
