@@ -1,10 +1,18 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import SocialMediaContext from '../context/SocialMediaContext'; // Import the context
 
 const Footer = () => {
   const { socialMediaLinks } = useContext(SocialMediaContext); // Access the context data
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+
+  useEffect(() => {
+    // Check if socialMediaLinks data has been fetched
+    if (socialMediaLinks && socialMediaLinks.length > 0) {
+      setIsLoading(false);
+    }
+  }, [socialMediaLinks]);
 
   // Animation Variants
   const iconVariants = {
@@ -39,6 +47,7 @@ const Footer = () => {
       },
     },
   };
+
   const LoadingSpinner = () => (
     <div className="flex justify-center items-center h-32 w-32">
       <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-white"></div>
@@ -60,33 +69,37 @@ const Footer = () => {
       animate="visible"
       variants={linkVariants}
     >
-      <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-        {/* Left Section: Social Media Links */}
-        <div className="flex space-x-6">
-          {socialLinks.map((social, index) => {
-            const Icon = social.icon;
-            return social.url ? ( // Check if the URL exists before rendering the icon
-              <motion.a
-                key={index}
-                href={social.url.startsWith('http') ? social.url : `http://${social.url}`} // Add http if missing
-                variants={iconVariants}
-                whileHover="hover"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
-              </motion.a>
-            ) : null; // Render nothing if URL is missing
-          })}
-        </div>
+      {isLoading ? (
+        <LoadingSpinner /> // Show spinner while loading
+      ) : (
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+          {/* Left Section: Social Media Links */}
+          <div className="flex space-x-6">
+            {socialLinks.map((social, index) => {
+              const Icon = social.icon;
+              return social.url ? ( // Check if the URL exists before rendering the icon
+                <motion.a
+                  key={index}
+                  href={social.url.startsWith('http') ? social.url : `http://${social.url}`} // Add http if missing
+                  variants={iconVariants}
+                  whileHover="hover"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon className="w-[20px] h-[20px] md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px]" />
+                </motion.a>
+              ) : null; // Render nothing if URL is missing
+            })}
+          </div>
 
-        {/* Right Section: Copyright */}
-        <motion.div variants={linkVariants}>
-          <p className="text-gray-400 text-xs md:text-sm lg:text-base">
-            &copy; {new Date().getFullYear()} SURIYA. All rights reserved.
-          </p>
-        </motion.div>
-      </div>
+          {/* Right Section: Copyright */}
+          <motion.div variants={linkVariants}>
+            <p className="text-gray-400 text-xs md:text-sm lg:text-base">
+              &copy; {new Date().getFullYear()} SURIYA. All rights reserved.
+            </p>
+          </motion.div>
+        </div>
+      )}
     </motion.footer>
   );
 };
