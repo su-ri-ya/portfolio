@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import profile from '../assets/profile.jpg';
 import { FaLinkedin, FaGithub, FaInstagram, FaWhatsapp, FaNodeJs } from 'react-icons/fa';
 import { SiJavascript, SiReact, SiTailwindcss, SiHtml5, SiCss3, SiPython } from 'react-icons/si';
@@ -7,8 +7,11 @@ import SocialMediaContext from '../context/SocialMediaContext';
 
 const Main = () => {
   const { socialMediaLinks } = useContext(SocialMediaContext);
+  const [loadingCV, setLoadingCV] = useState(false); // For CV download spinner
+  const [loadingSocials, setLoadingSocials] = useState(true); // For social links spinner
 
   const handleDownloadCV = async () => {
+    setLoadingCV(true); // Start CV spinner
     try {
       const response = await fetch('https://portfolio-backend-dsd6.onrender.com/api/resume'); // Replace with your actual CV endpoint
       if (!response.ok) {
@@ -26,8 +29,17 @@ const Main = () => {
       window.URL.revokeObjectURL(url); // Clean up the URL object
     } catch (error) {
       console.error('Error downloading CV:', error);
+    } finally {
+      setLoadingCV(false); // Stop CV spinner
     }
   };
+
+  // Set loadingSocials to false once social media links are loaded
+  useEffect(() => {
+    if (socialMediaLinks.length > 0) {
+      setLoadingSocials(false);
+    }
+  }, [socialMediaLinks]);
 
   return (
     <>
@@ -41,27 +53,38 @@ const Main = () => {
           />
           <h1 className="text-[30px] md:text-[35px] lg:text-[35px] mb-0">Suriya</h1>
           <h2 className="text-gray-600 mt-0 text-base md:text-lg">I am a Developer</h2>
+          
+          {/* Social Media Links with Loading Spinner */}
           <div className="flex justify-center items-center gap-5 mt-2">
-            {socialMediaLinks.map(link => (
-              <li key={link._id} className="list-none">
-                <div className="hover:scale-125 transition-transform duration-200">
-                  <a href={link.url.startsWith('http') ? link.url : `http://${link.url}`} target="_blank" rel="noopener noreferrer">
-                    {link.platform.toLowerCase() === "github" && (
-                      <FaGithub className="w-[25px] h-[25px] md:w-[40px] md:h-[40px] p-1 shadow-lg hover:text-gray-400" />
-                    )}
-                    {link.platform.toLowerCase() === "instagram" && (
-                      <FaInstagram className="w-[25px] h-[25px] md:w-[40px] md:h-[40px] p-1 shadow-lg hover:text-gray-400" />
-                    )}
-                    {link.platform.toLowerCase() === "linkedin" && (
-                      <FaLinkedin className="w-[25px] h-[25px] md:w-[40px] md:h-[40px] p-1 shadow-lg hover:text-gray-400" />
-                    )}
-                    {link.platform.toLowerCase() === "whatsapp" && (
-                      <FaWhatsapp className="w-[25px] h-[25px] md:w-[40px] md:h-[40px] p-1 shadow-lg hover:text-gray-400" />
-                    )}
-                  </a>
-                </div>
-              </li>
-            ))}
+            {loadingSocials ? (
+              <div className="spinner"> {/* Simple spinner */}
+                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                </svg>
+              </div>
+            ) : (
+              socialMediaLinks.map(link => (
+                <li key={link._id} className="list-none">
+                  <div className="hover:scale-125 transition-transform duration-200">
+                    <a href={link.url.startsWith('http') ? link.url : `http://${link.url}`} target="_blank" rel="noopener noreferrer">
+                      {link.platform.toLowerCase() === "github" && (
+                        <FaGithub className="w-[25px] h-[25px] md:w-[40px] md:h-[40px] p-1 shadow-lg hover:text-gray-400" />
+                      )}
+                      {link.platform.toLowerCase() === "instagram" && (
+                        <FaInstagram className="w-[25px] h-[25px] md:w-[40px] md:h-[40px] p-1 shadow-lg hover:text-gray-400" />
+                      )}
+                      {link.platform.toLowerCase() === "linkedin" && (
+                        <FaLinkedin className="w-[25px] h-[25px] md:w-[40px] md:h-[40px] p-1 shadow-lg hover:text-gray-400" />
+                      )}
+                      {link.platform.toLowerCase() === "whatsapp" && (
+                        <FaWhatsapp className="w-[25px] h-[25px] md:w-[40px] md:h-[40px] p-1 shadow-lg hover:text-gray-400" />
+                      )}
+                    </a>
+                  </div>
+                </li>
+              ))
+            )}
           </div>
         </div>
 
@@ -70,7 +93,7 @@ const Main = () => {
           <div className="w-full h-auto lg:h-[350px] bg-custom-bg px-6 py-8 lg:px-10 lg:py-10 flex flex-col justify-center items-start rounded-2xl">
             <p className="text-base md:text-lg text-gray-400">Hello There!</p>
             <h2 className="text-xs md:text-1xl lg:text-2xl font-bold mb-5 sm:text-base">
-              I`m a recent graduate seeking a developer role, skilled in crafting innovative web solutions. Available for freelance projects to bring ideas to life.
+              I’m a recent graduate seeking a developer role, skilled in crafting innovative web solutions. Available for freelance projects to bring ideas to life.
             </h2>
             <div className="flex items-center mb-4">
               <span className="text-green-400">●</span>
@@ -80,7 +103,7 @@ const Main = () => {
               onClick={handleDownloadCV} // Call the function when the button is clicked
               className="bg-transparent text-white py-3 px-6 rounded-full hover:scale-125 border border-white "
             >
-              Download CV
+              {loadingCV ? 'Downloading...' : 'Download CV'} {/* Show spinner or text */}
             </button>
           </div>
 
