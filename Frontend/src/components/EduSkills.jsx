@@ -5,7 +5,9 @@ import { motion } from 'framer-motion';
 
 const EduSkills = () => {
   const [eduDetails, setEduDetails] = useState([]);
-  const [certificates, setCertificates] = useState([]); // State for certificates
+  const [certificates, setCertificates] = useState([]);
+  const [loadingEdu, setLoadingEdu] = useState(true);
+  const [loadingCert, setLoadingCert] = useState(true);
 
   // Fetch education details from the backend
   useEffect(() => {
@@ -13,10 +15,11 @@ const EduSkills = () => {
       try {
         const res = await fetch('https://portfolio-backend-dsd6.onrender.com/api/alleducation');
         const data = await res.json();
-        console.log('Fetched education data:', data); // Log fetched education data
-        setEduDetails(data); // Update state with fetched education data
+        setEduDetails(data);
       } catch (error) {
         console.error('Failed to fetch education details:', error);
+      } finally {
+        setLoadingEdu(false);
       }
     };
 
@@ -27,19 +30,19 @@ const EduSkills = () => {
   useEffect(() => {
     const fetchCertificateData = async () => {
       try {
-        const res = await fetch('https://portfolio-backend-dsd6.onrender.com/api/certificates'); // Replace with your actual certificates API endpoint
+        const res = await fetch('https://portfolio-backend-dsd6.onrender.com/api/certificates');
         const data = await res.json();
-        console.log('Fetched certificate data:', data); // Log fetched certificate data
-        setCertificates(data); // Update state with fetched certificate data
+        setCertificates(data);
       } catch (error) {
         console.error('Failed to fetch certificate details:', error);
+      } finally {
+        setLoadingCert(false);
       }
     };
 
     fetchCertificateData();
   }, []);
 
-  // Skills Data (You can add more or fetch dynamically if needed)
   const skills = [
     { icon: <FaCode className="text-1xl" />, name: 'Web Development' },
     { icon: <FaCode className="text-1xl" />, name: 'UI/UX Design' },
@@ -75,7 +78,9 @@ const EduSkills = () => {
         <div className="w-full">
           <h2 className="text-xl sm:text-2xl font-bold mb-4 text-white">Certificates</h2>
           <div className="space-y-3 border border-gray-700 p-3 rounded-lg">
-            {certificates.length > 0 ? (
+            {loadingCert ? (
+              <p className="text-sm text-gray-400">Loading certificates...</p>
+            ) : certificates.length > 0 ? (
               certificates.map((cert, index) => (
                 <div key={index} className="flex items-start space-x-4">
                   <TbCertificate className="text-2xl text-white" />
@@ -103,21 +108,26 @@ const EduSkills = () => {
         >
           <h2 className="text-xl sm:text-2xl font-bold mb-6">Education</h2>
           <div className="space-y-6 w-full">
-            {eduDetails.length > 0 ? (
+            {loadingEdu ? (
+              <p className="text-sm text-gray-400">Loading education details...</p>
+            ) : eduDetails.length > 0 ? (
               eduDetails.map((edu) => (
                 <div key={edu._id} className="flex items-start space-x-4 bg-custom-bg p-4 sm:p-5 rounded-xl shadow-md border border-gray-700">
                   <div className="icon text-white">
                     <FaGraduationCap className="text-2xl sm:text-3xl" />
                   </div>
                   <div className="content">
-                    <span className="years text-gray-400 text-sm sm:text-base">{`${new Date(edu.startYear).getFullYear()} - ${new Date(edu.endYear).getFullYear()}`}</span>
-                    <h4 className="text-base sm:text-xl font-semibold text-white">{edu.title}</h4><span className='text-gray-500 text-sm sm:text-base block'>{edu.grade}</span>
+                    <span className="years text-gray-400 text-sm sm:text-base">
+                      {`${new Date(edu.startYear).getFullYear()} - ${new Date(edu.endYear).getFullYear()}`}
+                    </span>
+                    <h4 className="text-base sm:text-xl font-semibold text-white">{edu.title}</h4>
+                    <span className="text-gray-500 text-sm sm:text-base block">{edu.grade}</span>
                     <span className="institution text-gray-500 text-sm sm:text-base">{edu.institution}</span>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="text-sm text-gray-400">Loading......</p>
+              <p className="text-sm text-gray-400">No education details found.</p>
             )}
           </div>
         </motion.div>
