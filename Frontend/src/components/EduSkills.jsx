@@ -66,7 +66,7 @@ const EduSkills = () => {
         {/* Skills Section */}
         <div className="mb-6 w-full">
           <h2 className="text-xl sm:text-2xl font-bold mb-6 text-white">
-            Skills
+            SKILLS
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 border border-gray-700 p-4 sm:p-5 rounded-lg">
             {skills.map((skill, index) => (
@@ -83,7 +83,7 @@ const EduSkills = () => {
         {/* Certificates Section */}
         <div className="w-full">
           <h2 className="text-xl sm:text-2xl font-bold mb-4 text-white">
-            Certificates
+            CERTIFICATES
           </h2>
           <div className="space-y-3 border border-gray-700 p-3 rounded-lg">
             {loadingCert ? (
