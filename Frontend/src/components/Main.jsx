@@ -99,12 +99,12 @@ const Main = () => {
               <span className="text-green-400">●</span>
               <p className="ml-2 text-xs md:text-lg">Available for Freelancing</p>
             </div>
-            <button
+            {/*<button
               onClick={handleDownloadCV} // Call the function when the button is clicked
               className="bg-transparent text-white py-3 px-6 rounded-full hover:scale-125 border border-white "
             >
-              {loadingCV ? 'Downloading...' : 'Download CV'} {/* Show spinner or text */}
-            </button>
+              {loadingCV ? 'Downloading...' : 'Download CV'}  Show spinner or text
+            </button> */}
           </div>
 
           {/* Skill Icons */}
