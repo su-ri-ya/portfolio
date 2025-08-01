@@ -55,7 +55,7 @@ const Navbar = () => {
           
           className="text-lg md:text-2xl lg:text-4xl font-bold mx-auto md:mx-0"
         >
-          <Link to={"/"} onClick={scrollToTop}>ZARA</Link>
+          <Link to={"/"} onClick={scrollToTop}>SURIYA</Link>
         </motion.h1>
 
         {/* Hamburger Icon for Mobile */}
