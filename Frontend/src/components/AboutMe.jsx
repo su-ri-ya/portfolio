@@ -73,12 +73,12 @@ const AboutMe = () => {
             >
               Get in Touch
             </a>
-            <a
+            {/*<a
               onClick={handleDownloadCV}
               className="inline-block bg-transparent border border-white text-white py-3 px-6 rounded-full transition-transform transform hover:scale-105 shadow-lg"
             >
               Download Resume
-            </a>
+            </a>*/}
           </div>
         </motion.div>
       </section>
