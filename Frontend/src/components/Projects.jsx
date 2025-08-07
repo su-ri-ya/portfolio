@@ -78,7 +78,7 @@ const Projects = () => {
                   rel="noopener noreferrer"
                   className="text-gray-500 mt-2 block z-10 relative"
                 >
-                  Live Demo
+                  Github Link
                 </a>
               )}
 
